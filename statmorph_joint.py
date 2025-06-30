@@ -3287,18 +3287,21 @@ def source_morphology(image, segmap, **kwargs):
 
 def source_morphology_joint(images, segmap, weightmaps, **kwargs):
     """
-    Calculate the morphological parameters of all sources in ``image``
-    as labeled by ``segmap``.
+    The same as source_morphology, but fixes the centers and gini segmap 
+    for all the images to what is measured from the first image in images
+    
 
     Parameters
     ----------
-    image : array-like
-        A 2D image containing the sources of interest.
+    images : array-like
+        An array of 2D images containing the sources of interest.
         The image must already be background-subtracted.
     segmap : array-like (int) or `photutils.segmentation.SegmentationImage`
         A 2D segmentation map where different sources are
         labeled with different positive integer values.
         A value of zero is reserved for the background.
+    weightmaps : array-like
+        An array of 2D images containing the variances.
 
     Other parameters
     ----------------
@@ -3310,18 +3313,6 @@ def source_morphology_joint(images, segmap, weightmaps, **kwargs):
         A list of `SourceMorphology` objects, one for each
         source. The morphological parameters can be accessed
         as attributes or keys.
-
-    See Also
-    --------
-    SourceMorphology : Class to measure morphological parameters.
-
-    Examples
-    --------
-    See `README.rst` for usage examples.
-
-    References
-    ----------
-    See `README.rst` for a list of references.
 
     """
     if not isinstance(segmap, SegmentationImage):
