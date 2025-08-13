@@ -46,6 +46,7 @@ __all__ = [
     'ConvolvedDoubleSersic2D',
     'SourceMorphology',
     'source_morphology',
+    'source_morphology_joint',
     '__version__',
 ]
 
@@ -3319,7 +3320,7 @@ def source_morphology_joint(images, segmap, weightmaps, **kwargs):
         segmap = SegmentationImage(segmap)
 
     fix_morph = SourceMorphology(images[0], segmap, segmap.labels[0], weightmap = weightmaps[0], **kwargs)
-    fixed_atrs = ('_asymmetry_center', '_centroid', '_segmap_gini', '_m20_center')
+    fixed_atrs = ('_asymmetry_center', '_centroid', '_segmap_gini', '_m20_center', '_rpetro_circ_centroid')
 
     fixed_vals = dict([(atr, fix_morph[atr]) for atr in fixed_atrs])
 
